@@ -32,7 +32,11 @@ export const Image = (props: {
           objectFit: props.fit,
         }}
         src={props.src}
-        onLoad={() => props.onLoad()}
+        onLoad={() => {
+          if (props.onLoad) {
+            props.onLoad();
+          }
+        }}
       />
     </CursorBox>
   );

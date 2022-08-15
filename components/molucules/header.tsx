@@ -36,7 +36,7 @@ export const PortfolioHeader = () => {
       >
         <Link href={"/isr"}>
           <Sentence
-            size={moduler(1)}
+            size={moduler(0)}
             weight={"500"}
             family={"'Zen Kaku Gothic New', sans-serif"}
           >
@@ -45,7 +45,7 @@ export const PortfolioHeader = () => {
         </Link>
         <Link href={"/csr"}>
           <Sentence
-            size={moduler(1)}
+            size={moduler(0)}
             weight={"500"}
             family={"'Zen Kaku Gothic New', sans-serif"}
           >

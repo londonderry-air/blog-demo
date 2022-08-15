@@ -3,7 +3,7 @@ import { Box } from "../../components/atoms/box/common";
 import { FlexBox } from "../../components/atoms/box/flex";
 import { TransformBox } from "../../components/atoms/box/transform";
 import { Post } from "../../hooks/usePost";
-import { _Image } from "../../components/atoms/image/common";
+import { Image } from "../../components/atoms/image/common";
 import { BlogArticle } from "../../components/molucules/blog-article";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import { ColorBox } from "../../components/atoms/box/color";
@@ -92,7 +92,7 @@ export const Page = (props: { post?: Post }) => {
                       transform={isImgReady ? "scale(1.0)" : "scale(0.8)"}
                       transition={1}
                     >
-                      <_Image
+                      <Image
                         width={"100%"}
                         height={"100%"}
                         src={

@@ -15,6 +15,7 @@ export const Image = (props: {
   fit: NonNullable<JSX.IntrinsicElements["img"]["style"]>["objectFit"];
   radius?: string;
   cursor?: string;
+  onLoad?: () => void;
 }) => {
   return (
     <CursorBox
@@ -31,6 +32,7 @@ export const Image = (props: {
           objectFit: props.fit,
         }}
         src={props.src}
+        onLoad={() => props.onLoad()}
       />
     </CursorBox>
   );

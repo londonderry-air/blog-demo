@@ -15,6 +15,7 @@ import { FramerBox } from "../../components/atoms/box/framer";
 import { Sentence } from "../../components/atoms/text/common";
 import { moduler } from "../../utils/styles";
 import { Link } from "../../components/atoms/link/common";
+import { Loading } from "../../components/atoms/loading/common";
 
 export const Page = (props: { post?: Post }) => {
   const isMQ = useMediaQuery();
@@ -33,124 +34,127 @@ export const Page = (props: { post?: Post }) => {
     }
   }, [props.post, isTransitioning]);
 
-  if (!props.post) return <></>;
-
   return (
     <FramerBox width={isMQ ? "100%" : "50%"}>
-      <FlexBox
-        way={isMQ ? "column" : "column"}
-        width={"100%"}
-        padding={isMQ ? "15% 5%" : "10vh 0"}
-        position={"relative"}
-      >
-        <FlexBox
-          width={"100%"}
-          height={"100%"}
-          way={"column"}
-          alignItems={"center"}
-          justifyContent={"center"}
-        >
-          <ColorBox
+      <Loading isVisible={!props.post} />
+      {props.post && (
+        <FramerBox width={"100%"}>
+          <FlexBox
+            way={isMQ ? "column" : "column"}
             width={"100%"}
-            height={"320px"}
-            opacity={isImgReady ? 1 : 0}
-            background={
-              props.post.custom
-                ? props.post.custom.color ?? "#F4F4F4"
-                : "#F4F4F4"
-            }
-            transition={1}
+            padding={isMQ ? "15% 5%" : "10vh 0"}
+            position={"relative"}
           >
+            <FlexBox
+              width={"100%"}
+              height={"100%"}
+              way={"column"}
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
+              <ColorBox
+                width={"100%"}
+                height={"320px"}
+                opacity={isImgReady ? 1 : 0}
+                background={
+                  props.post.custom
+                    ? props.post.custom.color ?? "#F4F4F4"
+                    : "#F4F4F4"
+                }
+                transition={1}
+              >
+                <BorderBox
+                  width={"100%"}
+                  height={"100%"}
+                  padding={"20px"}
+                  borderPosition={"all"}
+                  borderWidth={"1px"}
+                  borderColor={pallet.black}
+                  borderStyle={"solid"}
+                >
+                  <TransformBox
+                    width={"100%"}
+                    height={"100%"}
+                    transform={
+                      isImgReady
+                        ? "scale(1.0) "
+                        : isMQ
+                        ? "scale(1.0)"
+                        : "scale(1.4)"
+                    }
+                    origin={"center"}
+                    overflow={"hidden"}
+                    transition={1}
+                  >
+                    <TransformBox
+                      width={"100%"}
+                      height={"100%"}
+                      transform={isImgReady ? "scale(1.0)" : "scale(0.8)"}
+                      transition={1}
+                    >
+                      <_Image
+                        width={"100%"}
+                        height={"100%"}
+                        src={
+                          props.post.thumbnail
+                            ? props.post.thumbnail.url
+                            : "/dog.png"
+                        }
+                        fit={"cover"}
+                        onLoad={(e) => {
+                          setImgReadyState(true);
+                        }}
+                      />
+                    </TransformBox>
+                  </TransformBox>
+                </BorderBox>
+              </ColorBox>
+            </FlexBox>
+            <Box width={"100%"} shrink={"0"} position={"relative"}>
+              <ColorBox
+                width={"100%"}
+                height={"100%"}
+                opacity={isReady ? 1 : 0}
+                transition={1}
+              >
+                <FlexBox
+                  way={"column"}
+                  width={"100%"}
+                  height={"100%"}
+                  padding={"10vh 0"}
+                >
+                  <BlogArticle post={props.post} />
+                </FlexBox>
+              </ColorBox>
+            </Box>
             <BorderBox
               width={"100%"}
               height={"100%"}
-              padding={"20px"}
-              borderPosition={"all"}
+              padding={"30px 0 0 0"}
+              borderPosition={"top"}
               borderWidth={"1px"}
               borderColor={pallet.black}
               borderStyle={"solid"}
             >
-              <TransformBox
+              <FlexBox
+                way={"row"}
                 width={"100%"}
-                height={"100%"}
-                transform={
-                  isImgReady
-                    ? "scale(1.0) "
-                    : isMQ
-                    ? "scale(1.0)"
-                    : "scale(1.4)"
-                }
-                origin={"center"}
-                overflow={"hidden"}
-                transition={1}
+                justifyContent={"space-between"}
+                alignItems={"center"}
               >
-                <TransformBox
-                  width={"100%"}
-                  height={"100%"}
-                  transform={isImgReady ? "scale(1.0)" : "scale(0.8)"}
-                  transition={1}
-                >
-                  <_Image
-                    width={"100%"}
-                    height={"100%"}
-                    src={
-                      props.post.thumbnail
-                        ? props.post.thumbnail.url
-                        : "/dog.png"
-                    }
-                    fit={"cover"}
-                    onLoad={(e) => {
-                      setImgReadyState(true);
-                    }}
-                  />
-                </TransformBox>
-              </TransformBox>
+                <Sentence family={"'Zen Kaku Gothic New', sans-serif"}>
+                  Thank you for reading!
+                </Sentence>
+                <Sentence size={moduler(-1)}>
+                  <Link href={"/isr"} isBorder={true}>
+                    ブログ一覧に戻る
+                  </Link>
+                </Sentence>
+              </FlexBox>
             </BorderBox>
-          </ColorBox>
-        </FlexBox>
-        <Box width={"100%"} shrink={"0"} position={"relative"}>
-          <ColorBox
-            width={"100%"}
-            height={"100%"}
-            opacity={isReady ? 1 : 0}
-            transition={1}
-          >
-            <FlexBox
-              way={"column"}
-              width={"100%"}
-              height={"100%"}
-              padding={"10vh 0"}
-            >
-              <BlogArticle post={props.post} />
-            </FlexBox>
-          </ColorBox>
-        </Box>
-        <BorderBox
-          width={"100%"}
-          height={"100%"}
-          padding={"30px 0 0 0"}
-          borderPosition={"top"}
-          borderWidth={"1px"}
-          borderColor={pallet.black}
-          borderStyle={"solid"}
-        >
-          <FlexBox
-            way={"row"}
-            width={"100%"}
-            justifyContent={"space-between"}
-            alignItems={"center"}
-          >
-            <Sentence family={"'Zen Kaku Gothic New', sans-serif"}>
-              Thank you for reading!
-            </Sentence>
-            <Sentence size={moduler(-1)}>
-              <Link href={"/blog"} isBorder={true}>
-                ブログ一覧に戻る
-              </Link>
-            </Sentence>
           </FlexBox>
-        </BorderBox>
-      </FlexBox>
+        </FramerBox>
+      )}
     </FramerBox>
   );
 };

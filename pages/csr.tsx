@@ -11,6 +11,7 @@ import { Post } from "../hooks/usePost";
 import { FramerBox } from "../components/atoms/box/framer";
 import { useRouter } from "next/router";
 import { usePost } from "../hooks/usePost";
+import { Loading } from "../components/atoms/loading/common";
 
 export const Page = () => {
   const router = useRouter();
@@ -29,6 +30,7 @@ export const Page = () => {
 
   return (
     <FramerBox>
+      <Loading isVisible={posts.length === 0} />
       <ColorBox
         width={"100%"}
         height={"100%"}

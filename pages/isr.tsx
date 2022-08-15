@@ -8,6 +8,7 @@ import { headState, transitionState } from "../utils/atoms";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { Post } from "../hooks/usePost";
 import { FramerBox } from "../components/atoms/box/framer";
+import { Loading } from "../components/atoms/loading/common";
 
 export const Page = (props: { posts: Post[] }) => {
   const isMQ = useMediaQuery();
@@ -24,6 +25,7 @@ export const Page = (props: { posts: Post[] }) => {
 
   return (
     <FramerBox>
+      <Loading isVisible={!props.posts} />
       <ColorBox
         width={"100%"}
         height={"100%"}

@@ -13,6 +13,15 @@ const LoadingAnimator = styled(ColorBox)<{ duration: number }>`
     from {
       transform: rotate3d(0.5, 0.5, 0.5, 360deg);
     }
+    25% {
+      transform: rotate3d(0.5, 0.5, 0.5, 270deg);
+    }
+    50% {
+      transform: rotate3d(0.5, 0.5, 0.5, 180deg);
+    }
+    75% {
+      transform: rotate3d(0.5, 0.5, 0.5, 90deg);
+    }
     to {
       transform: rotate3d(0deg);
     }

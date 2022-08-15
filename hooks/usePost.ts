@@ -21,13 +21,9 @@ export const usePost = (option: {
   category?: string;
 }): Post[] => {
   const { data, error } = useSWR(
-    `${
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:3001/"
-        : "https://tayori-blog-demo.vercel.app/"
-    }/api/post?${option.slug ? `slug=${option.slug}` : ""}${
-      option.category ? `category=${option.category}` : ""
-    }`,
+    `${process.env.CMS_ORIGIN}/api/post?${
+      option.slug ? `slug=${option.slug}` : ""
+    }${option.category ? `category=${option.category}` : ""}`,
     fetcher,
     {
       revalidateOnFocus: false,

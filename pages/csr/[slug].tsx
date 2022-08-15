@@ -46,7 +46,7 @@ export const Page = () => {
           <FlexBox
             way={isMQ ? "column" : "column"}
             width={"100%"}
-            padding={isMQ ? "15% 5%" : "10vh 0"}
+            padding={isMQ ? "20% 5%" : "10vh 0"}
             position={"relative"}
           >
             <FlexBox

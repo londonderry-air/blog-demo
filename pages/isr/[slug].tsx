@@ -42,7 +42,7 @@ export const Page = (props: { post?: Post }) => {
           <FlexBox
             way={isMQ ? "column" : "column"}
             width={"100%"}
-            padding={isMQ ? "15% 5%" : "10vh 0"}
+            padding={isMQ ? "20% 5%" : "10vh 0"}
             position={"relative"}
           >
             <FlexBox
@@ -101,7 +101,7 @@ export const Page = (props: { post?: Post }) => {
                             : "/dog.png"
                         }
                         fit={"cover"}
-                        onLoad={(e) => {
+                        onLoad={() => {
                           setImgReadyState(true);
                         }}
                       />

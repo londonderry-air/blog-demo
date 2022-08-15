@@ -19,7 +19,7 @@ export const Page = (props: { posts: Post[] }) => {
   useEffect(() => {
     if (!isTransitioning) {
       setShow(true);
-      setHead({ title: "BLOG | Tayori Demo", ogImage: "./dog.png" });
+      setHead({ title: "ISR BLOG | Tayori Demo", ogImage: "./dog.png" });
     }
   }, [isTransitioning]);
 

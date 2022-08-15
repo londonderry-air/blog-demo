@@ -21,7 +21,7 @@ export const usePost = (option: {
   category?: string;
 }): Post[] => {
   const { data, error } = useSWR(
-    `${process.env.SITE_ORIGIN}/api/post?${
+    `${process.env.NEXT_PUBLIC_SITE_ORIGIN}/api/post?${
       option.slug ? `slug=${option.slug}` : ""
     }${option.category ? `category=${option.category}` : ""}`,
     fetcher,
